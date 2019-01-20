@@ -1,0 +1,30 @@
+
+.layout {
+  display: flex;
+}
+
+.wrapper {
+  position: relative;
+}
+
+.listings {
+  width: 50%;
+  position: relative;
+  z-index: 3;
+}
+
+.cards-list {
+  background-color: #fff;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  &.is-empty {
+    background-color: #f3f3f3;
+  }
+}
+
+.cards {
+  max-width: 100%;
+}

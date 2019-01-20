@@ -1,0 +1,94 @@
+$transition-easing: cubic-bezier(0.455, 0.030, 0.515, 0.955);
+$dark-grey: #222222;
+$blue: #1078ff;
+
+.card {
+  flex-basis: calc(100% / 4);
+  margin: 0.5rem;
+  min-width: 130px;
+  border: 3px #fff solid;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s linear;
+  cursor: pointer;
+  position: relative;
+  background-color: #fff;
+
+  &:hover {
+    background-color: #f3f3f3;
+    border-color: #f3f3f3;
+  }
+
+  padding: 10px;
+
+  img {
+    max-width: calc(100%);
+    margin: 0 auto;
+    display: block;
+  }
+
+  .index {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    line-height: 20px;
+    font-size: 14px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    padding: 0 10px;
+  }
+
+  .price {
+    margin: 0;
+    padding: 10px 0;
+    font-weight: bold;
+  }
+
+  .details {
+    position: relative;
+  }
+
+  .location {
+
+  }
+
+  .features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      padding-left: 24px;
+      margin-right: 10px;
+      display: inline-block;
+
+      span {
+        display: none;
+      }
+
+      &.icon-bed {
+        background-size: auto 100%;
+        background: url(../../images/bed-left-side.svg) no-repeat left center;
+      }
+
+      &.icon-bath {
+        background-size: auto 100%;
+        background: url(../../images/bathtub.svg) no-repeat;
+      }
+
+      &.icon-car {
+        background-size: auto 100%;
+        background: url(../../images/car-compact.svg) no-repeat;
+      }
+
+    }
+  }
+}
+
+.active {
+  border-color: $blue;
+
+  .index {
+    background-color: $blue;
+  }
+}
