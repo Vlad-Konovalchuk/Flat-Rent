@@ -2,9 +2,10 @@ import React from 'react';
 import styles from './Card.module.scss'
 import PropTypes from 'prop-types';
 
-const Card = ({property, activeProperty}) => (
+const Card = ({property, activeProperty, handleChange}) => (
     <div id="card-1"
-         className={property === activeProperty ? `${styles.card} ${styles.active}` : `${styles.card}`}>
+         className={property === activeProperty ? `${styles.card} ${styles.active}` : `${styles.card}`}
+         onClick={()=>handleChange(property)}>
         <img src={property.picture}
              alt="Machias"/>
         <p className={styles.price}>{property.price}</p>

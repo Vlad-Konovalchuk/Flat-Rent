@@ -1,16 +1,20 @@
 
 .layout {
+  height: 100%;
+  width: 100%;
   display: flex;
+  >div {
+    width: 50%;
+  }
 }
 
-.wrapper {
-  position: relative;
-}
 
 .listings {
-  width: 50%;
+  height: 100%;
+  flex-basis: 50%;
   position: relative;
   z-index: 3;
+
 }
 
 .cards-list {

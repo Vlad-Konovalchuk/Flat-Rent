@@ -25,15 +25,34 @@ $blue: #1078ff;
 
   }
 
-  .btn-clear {
+  .btn-filter {
+    border-radius: 5px;
+    padding: 3px 15px;
+    font-size: 16px;
     background: transparent;
-    border: none;
-    text-decoration: underline;
-    color: $blue;
+    color: #fff;
+    border: 1px #fff solid;
+    transition: all 0.3s linear;
+    display: block;
+    width: 100%;
 
     &:hover,
     &:active {
-      text-decoration: none;
+      background-color: #fff;
+      color: $dark-grey;
+    }
+
+    span {
+      display: none
+    }
+
+    @media (min-width: 992px) {
+      strong {
+        display: none;
+      }
+      span {
+        display: inline-block;
+      }
     }
   }
 
@@ -65,81 +84,13 @@ $blue: #1078ff;
       width: 80px;
     }
   }
+
+
 }
 
-.btn-filter {
-  border-radius: 5px;
-  padding: 3px 15px;
-  font-size: 16px;
-  background: transparent;
-  color: #fff;
-  border: 1px #fff solid;
-  transition: all 0.3s linear;
-  display: block;
-  width: 100%;
 
-  &:hover,
-  &:active {
-    background-color: #fff;
-    color: $dark-grey;
-  }
-
-  span {
-    display: none
-  }
-
-  @media (min-width: 992px) {
-    strong {
-      display: none;
-    }
-    span {
-      display: inline-block;
-    }
-  }
-}
-
-.filter {
-  transform: translateY(-100%);
-  transition: transform 0.3s $transition-easing;
-  position: fixed;
-  top: 0;
-  height: auto;
-  left: auto;
-  right: 0;
-  width: 50%;
-  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
-  background-color: #fff;
-  z-index: 3;
-  text-align: left;
-  padding: 32px 130px 30px 30px;
-
-  .filterBox {
-    margin: 0 20px 20px 0;
-    display: inline-block;
-
-    label {
-      display: block;
-    }
-
-    &.filterFrom {
-      margin-right: 10px;
-    }
-  }
-
-  .btn-filter {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    width: auto;
-    @media (min-width: 992px) {
-      top: 50px;
-      width: 80px;
-    }
-  }
-}
-
-.filter-is-visible {
-  .filter {
+.header.filter-is-visible {
+  > form {
     transform: translateY(0%);
   }
 
@@ -152,3 +103,5 @@ $blue: #1078ff;
     }
   }
 }
+
+

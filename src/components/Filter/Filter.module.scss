@@ -1,0 +1,68 @@
+$transition-easing: cubic-bezier(0.455, 0.030, 0.515, 0.955);
+$dark-grey: #222222;
+$blue: #1078ff;
+
+
+.filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: #fff;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-bottom: 1px solid #eee;
+  flex-wrap: nowrap;
+
+
+}
+
+.filterBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-clear {
+  background: transparent;
+  border: none;
+  text-decoration: underline;
+  color: $blue;
+
+  &:hover,
+  &:active {
+    text-decoration: none;
+  }
+}
+
+.btn-filter {
+  border-radius: 5px;
+  padding: 3px 15px;
+  font-size: 16px;
+  background: transparent;
+  border: 1px #fff solid;
+  transition: all 0.3s linear;
+  display: block;
+  box-shadow: 0 0 0 2px #eee;
+  cursor: pointer;
+  &:hover,
+  &:active {
+    background-color: #fff;
+    color: $dark-grey;
+  }
+
+  span {
+    display: none
+  }
+
+  @media (min-width: 992px) {
+    strong {
+      display: none;
+    }
+    span {
+      display: inline-block;
+    }
+  }
+}
