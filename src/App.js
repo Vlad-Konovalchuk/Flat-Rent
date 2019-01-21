@@ -10,6 +10,9 @@ class App extends React.PureComponent {
         properties: data.properties,
         activeProperties: data.properties[0],
         filterIsVisible: false,
+        isFiltering: false,
+        filteredProperties: [],
+        filterBedrooms: 'any'
     };
     toggleFilter = (e) => {
         e.preventDefault();
@@ -21,8 +24,17 @@ class App extends React.PureComponent {
         this.setState({activeProperties: item})
     };
     handleFilterChange = (e) => {
-        const target = e.target;
-        console.log(target.name, target.value)
+        const {name, value} = e.target;
+        this.setState({[name]: value}, () => this.filterProperties());
+
+
+    };
+
+    filterProperties = () => {
+        const {properties, filterBedrooms} = this.state;
+        const isFiltering = filterBedrooms !== 'any';
+
+        this.setState({filteredProperties: ['someData'], isFiltering})
     };
 
     render() {
