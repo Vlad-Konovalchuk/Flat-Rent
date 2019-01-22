@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 $transition-easing: cubic-bezier(0.455, 0.030, 0.515, 0.955);
 $dark-grey: #222222;
 $blue: #1078ff;
@@ -6,7 +7,7 @@ $blue: #1078ff;
 .filter {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   background: #fff;
   height: 100%;
   width: 100%;
@@ -15,7 +16,7 @@ $blue: #1078ff;
   top: 0;
   left: 0;
   border-bottom: 1px solid #eee;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 
 
 }
@@ -23,6 +24,9 @@ $blue: #1078ff;
 .filterBox {
   display: flex;
   flex-direction: column;
+  flex-basis: 75px;
+  font-family: 'Roboto', sans-serif;
+
 }
 
 .btn-clear {
@@ -30,6 +34,7 @@ $blue: #1078ff;
   border: none;
   text-decoration: underline;
   color: $blue;
+  font-family: 'Roboto', sans-serif;
 
   &:hover,
   &:active {
@@ -38,6 +43,7 @@ $blue: #1078ff;
 }
 
 .btn-filter {
+  margin-top: 10px;
   border-radius: 5px;
   padding: 3px 15px;
   font-size: 16px;
@@ -46,6 +52,7 @@ $blue: #1078ff;
   transition: all 0.3s linear;
   display: block;
   box-shadow: 0 0 0 2px #eee;
+  font-family: 'Roboto', sans-serif;
   cursor: pointer;
   &:hover,
   &:active {

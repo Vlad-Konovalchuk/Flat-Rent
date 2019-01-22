@@ -3,10 +3,6 @@ import styles from "../Filter/Filter.module.scss";
 import PropTypes from "prop-types";
 
 class Filter extends React.PureComponent {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const {changeFilterVisible, handleFilterChange, clearFilter} = this.props;
         return (
@@ -88,7 +84,7 @@ class Filter extends React.PureComponent {
                     <label>&nbsp;</label>
                     <button
                         className={styles["btn-clear"]}
-                        onClick={(e) => clearFilter(e,this.form)}
+                        onClick={(e) => clearFilter(e, this.form)}
                     >Clear
                     </button>
                 </div>
