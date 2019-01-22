@@ -25,7 +25,7 @@ export class MapContainer extends PureComponent {
         })
     };
 
-    onMapClicked = (props) => {
+    onMapClick = (props) => {
         if (this.state.showingInfoWindow) {
             this.setState({
                 showingInfoWindow: false,
@@ -65,21 +65,22 @@ export class MapContainer extends PureComponent {
 
                 >
                     {properties.map(item => (
-                        <Marker key={item._id}
-                                position={{lat: item.latitude, lng: item.longitude}}
-                                onClick={this.onMarkerClick}
-                                name={'Current location'}
-                        >
-                            <InfoWindow
-                                marker={this.state.activeMarker}
-                                visible={this.state.showingInfoWindow}
-                                onClose={this.onInfoWindowClose}
-                            >
-                                <div style={style}>
-                                    <h1>{item.address}</h1>
-                                </div>
-                            </InfoWindow>
-                        </Marker>))}
+                            <Marker key={item._id}
+                                    position={{lat: item.latitude, lng: item.longitude}}
+                                    onClick={this.onMarkerClick}
+                                    name={item._id}
+                                    title={item.address}
+
+                            />
+                    ))}
+                    {/*<InfoWindow*/}
+                        {/*// onOpen={this.onMarkerClick}*/}
+                        {/*// onClose={this.onInfoWindowClose()}*/}
+                        {/*visible={this.state.showingInfoWindow}>*/}
+                        {/*<div style={style}>*/}
+                            {/*<h1>Hell oworld</h1>*/}
+                        {/*</div>*/}
+                    {/*</InfoWindow>*/}
                 </Map>
             </div>
         );

@@ -4,6 +4,7 @@ import data from './data/Data'
 import Card from "./components/Card/Card";
 import Header from "./components/Header/Header";
 import MapContainer from "./components/GoogleMap/GoogleMap";
+import image from './images/house-location-pin.svg';
 
 class App extends React.PureComponent {
     state = {
@@ -53,12 +54,12 @@ class App extends React.PureComponent {
         };
         this.setState({
             filteredProperties: getFilterProperties(properties),
-            activeProperties: getFilterProperties(properties)[0],
+            activeProperties: getFilterProperties(properties)[0] || properties[0],
             isFiltering
         })
     };
 
-    clearFilter = (e,form) => {
+    clearFilter = (e, form) => {
         e.preventDefault();
         this.setState({
             isFiltering: false,
@@ -69,6 +70,7 @@ class App extends React.PureComponent {
         });
         form.reset();
     };
+
     render() {
         const {properties, activeProperties, filterIsVisible, filteredProperties, isFiltering} = this.state;
         const propertiesList = isFiltering ? filteredProperties : properties;
@@ -79,6 +81,7 @@ class App extends React.PureComponent {
                     activeProperty={activeProperties}
                     filteredProperties={filteredProperties}
                     isFiltering={isFiltering}
+                    changeActiveProperty={this.changeActiveProperty}
                 />
                 <div className={styles.listings}>
                     <Header
@@ -94,6 +97,12 @@ class App extends React.PureComponent {
                                 property={property}
                                 activeProperty={activeProperties}
                                 handleChange={this.changeActiveProperty}/>)}
+
+                            {(isFiltering && propertiesList.length === 0) &&
+                            <p className={styles["empty-result"]}>
+                                <img src={image} alt="No properties was found"/>
+                                No properties was found.
+                            </p>}
                         </div>
                     </div>
                 </div>
