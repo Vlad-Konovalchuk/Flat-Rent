@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import styles from "./GoogleMap.module.scss";
 import {Map, GoogleApiWrapper, Marker} from 'google-maps-react';
 import PropTypes from "prop-types";
-import Card from "../../App";
+
 
 export class MapContainer extends PureComponent {
     state = {
@@ -12,24 +12,16 @@ export class MapContainer extends PureComponent {
         },
         zoom: 14
     };
-    _onChange = ({center, zoom}) => {
-        this.setState({
-            center: {
-                lat: 40.7831,
-                lng: -73.9712
-            },
-            zoom: zoom,
-        });
-    };
 
     render() {
-        const {properties, activeProperty} = this.props;
+        const {properties, activeProperty,isFiltering,filteredProperties} = this.props;
         const style = {
             width: '49vw',
             height: '100vh',
             'marginLeft': 'auto',
             'marginRight': 'auto'
-        }
+        };
+
         return (
             <div className={styles.wrapper}>
                 <Map
@@ -51,6 +43,12 @@ export class MapContainer extends PureComponent {
     }
 }
 
+MapContainer.propTypes = {
+    properties: PropTypes.array.isRequired,
+    activeProperty: PropTypes.object.isRequired,
+    filteredProperties: PropTypes.func.isRequired,
+    isFiltering: PropTypes.bool.isRequired
+};
 export default GoogleApiWrapper({
     apiKey: 'AIzaSyA9_abOu_dTqGFHeMwAHA1Hf5VheHbpaQ4'
 })(MapContainer);

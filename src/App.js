@@ -12,8 +12,10 @@ class App extends React.PureComponent {
         filterIsVisible: false,
         isFiltering: false,
         filteredProperties: [],
-        filterBedrooms: 'any'
+        filterBedrooms: 'any',
+        filterBathrooms: 'any',
     };
+
     toggleFilter = (e) => {
         e.preventDefault();
         this.setState({
@@ -31,17 +33,37 @@ class App extends React.PureComponent {
     };
 
     filterProperties = () => {
-        const {properties, filterBedrooms} = this.state;
-        const isFiltering = filterBedrooms !== 'any';
+        const {properties, filterBedrooms, filterBathrooms} = this.state;
+        const isFiltering = filterBedrooms !== 'any' || filterBathrooms !== 'any';
+        const getFilterProperties = (properties) => {
+            const filteredProperties = [];
+            properties.map(property => {
+                const {bedrooms, bathrooms} = property;
+                const match = (bedrooms === parseInt(filterBedrooms) || filterBedrooms === 'any') && (bathrooms === parseInt(filterBathrooms) || filterBathrooms === 'any');
 
-        this.setState({filteredProperties: ['someData'], isFiltering})
+                match && filteredProperties.push(property);
+            });
+
+            return filteredProperties;
+        };
+        this.setState({
+            filteredProperties: getFilterProperties(properties),
+            activeProperties: getFilterProperties(properties)[0],
+            isFiltering
+        })
     };
 
     render() {
-        const {properties, activeProperties, filterIsVisible} = this.state;
+        const {properties, activeProperties, filterIsVisible, filteredProperties, isFiltering} = this.state;
+        const propertiesList = isFiltering ? filteredProperties : properties;
         return (
             <div className={styles.layout}>
-                <MapContainer properties={properties} activeProperty={activeProperties}/>
+                <MapContainer
+                    properties={propertiesList}
+                    activeProperty={activeProperties}
+                    filteredProperties={filteredProperties}
+                    isFiltering={isFiltering}
+                />
                 <div className={styles.listings}>
                     <Header
                         filterIsVisible={filterIsVisible}
@@ -50,7 +72,7 @@ class App extends React.PureComponent {
                     />
                     <div className={styles.cards}>
                         <div className={styles["cards-list"]}>
-                            {properties.map(property => <Card
+                            {propertiesList.map(property => <Card
                                 key={property._id}
                                 property={property}
                                 activeProperty={activeProperties}

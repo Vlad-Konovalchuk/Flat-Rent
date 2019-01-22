@@ -6,7 +6,7 @@ import Filter from "../Filter/Filter";
 const Header = ({filterIsVisible, toggleFilter,handleFilterChange}) => (
     <header className={filterIsVisible ? `${styles['filter-is-visible']} ${styles.header}` : `${styles.header}`}>
         {filterIsVisible && <Filter changeFilterVisible={toggleFilter} handleFilterChange={handleFilterChange}/>}
-        <img src={image} className={styles.img}/>
+        <img src={image} className={styles.img} alt="Logo Picture"/>
         <h1 className={styles.title}>Property Listings</h1>
         <button className={styles["btn-filter"]} onClick={(e) => toggleFilter(e)}>Filter</button>
     </header>

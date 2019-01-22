@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from "../Filter/Filter.module.scss";
+import PropTypes from "prop-types";
 
 class Filter extends React.PureComponent {
     render() {
@@ -8,8 +9,10 @@ class Filter extends React.PureComponent {
                 className={styles.filter}>
                 <div className={styles.filterBox}>
                     <label htmlFor="filterBedrooms">Bedrooms</label>
-                    <select id="filterBedrooms" name="filterBedrooms"
-                            onChange={(e) => this.props.handleFilterChange(e)}>
+                    <select
+                        id="filterBedrooms"
+                        name="filterBedrooms"
+                        onChange={(e) => this.props.handleFilterChange(e)}>
                         <option value="any">Any</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -18,8 +21,10 @@ class Filter extends React.PureComponent {
                 </div>
                 <div className={styles.filterBox}>
                     <label htmlFor="filterBathrooms">Bathrooms</label>
-                    <select id="filterBathrooms" name="filterBathrooms"
-                            onChange={(e) => this.props.handleFilterChange(e)}>
+                    <select
+                        id="filterBathrooms"
+                        name="filterBathrooms"
+                        onChange={(e) => this.props.handleFilterChange(e)}>
                         <option value="any">Any</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -27,7 +32,10 @@ class Filter extends React.PureComponent {
                 </div>
                 <div className={styles.filterBox}>
                     <label htmlFor="filterCars">Car Spaces</label>
-                    <select id="filterCars" name="filterCars" onChange={(e) => this.props.handleFilterChange(e)}>
+                    <select
+                        id="filterCars"
+                        name="filterCars"
+                        nChange={(e) => this.props.handleFilterChange(e)}>
                         <option value="any">Any</option>
                         <option value="0">0</option>
                         <option value="1">1</option>
@@ -47,7 +55,10 @@ class Filter extends React.PureComponent {
                 </div>
                 <div className={styles.filterBox}>
                     <label htmlFor="priceTo">Max Price</label>
-                    <select id="priceTo" name="priceTo" onChange={(e) => this.props.handleFilterChange(e)}>
+                    <select
+                        id="priceTo"
+                        name="priceTo"
+                        onChange={(e) => this.props.handleFilterChange(e)}>
                         <option value="1000001">Any</option>
                         <option value="600000">{600000}</option>
                         <option value="700000">{700000}</option>
@@ -58,7 +69,10 @@ class Filter extends React.PureComponent {
                 </div>
                 <div className={styles.filterBox}>
                     <label htmlFor="filterSort">Order by</label>
-                    <select id="filterSort" name="filterSort" onChange={(e) => this.props.handleFilterChange(e)}>
+                    <select
+                        id="filterSort"
+                        name="filterSort"
+                        onChange={(e) => this.props.handleFilterChange(e)}>
                         <option value="any">Default</option>
                         <option value="0">Price: - Low to High</option>
                         <option value="1">Price: - High to Low</option>
@@ -80,5 +94,9 @@ class Filter extends React.PureComponent {
     }
 }
 
+Filter.propTypes = {
+    changeFilterVisible: PropTypes.func.isRequired,
+    handleFilterChange: PropTypes.func.isRequired
+};
 
 export default Filter;
