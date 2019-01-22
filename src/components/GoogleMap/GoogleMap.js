@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 
 
 export class MapContainer extends PureComponent {
+
     state = {
         center: {
             lat: 40.7831,
@@ -14,7 +15,7 @@ export class MapContainer extends PureComponent {
     };
 
     render() {
-        const {properties, activeProperty,isFiltering,filteredProperties} = this.props;
+        const {properties, activeProperty, isFiltering, filteredProperties} = this.props;
         const style = {
             width: '49vw',
             height: '100vh',

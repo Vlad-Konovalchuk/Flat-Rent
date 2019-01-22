@@ -14,7 +14,12 @@ class App extends React.PureComponent {
         filteredProperties: [],
         filterBedrooms: 'any',
         filterBathrooms: 'any',
+        filterCars: 'any',
     };
+
+    static checkIsFilter(source, target) {
+        return source === parseInt(target) || target === 'any'
+    }
 
     toggleFilter = (e) => {
         e.preventDefault();
@@ -22,24 +27,24 @@ class App extends React.PureComponent {
             filterIsVisible: !this.state.filterIsVisible
         })
     };
+
     changeActiveProperty = (item) => {
         this.setState({activeProperties: item})
     };
+
     handleFilterChange = (e) => {
         const {name, value} = e.target;
         this.setState({[name]: value}, () => this.filterProperties());
-
-
     };
 
     filterProperties = () => {
-        const {properties, filterBedrooms, filterBathrooms} = this.state;
-        const isFiltering = filterBedrooms !== 'any' || filterBathrooms !== 'any';
+        const {properties, filterBedrooms, filterBathrooms, filterCars} = this.state;
+        const isFiltering = filterBedrooms !== 'any' || filterBathrooms !== 'any' || filterCars !== 'any';
         const getFilterProperties = (properties) => {
             const filteredProperties = [];
             properties.map(property => {
-                const {bedrooms, bathrooms} = property;
-                const match = (bedrooms === parseInt(filterBedrooms) || filterBedrooms === 'any') && (bathrooms === parseInt(filterBathrooms) || filterBathrooms === 'any');
+                const {bedrooms, bathrooms, carSpaces} = property;
+                const match = App.checkIsFilter(bedrooms, filterBedrooms) && App.checkIsFilter(bathrooms, filterBathrooms) && App.checkIsFilter(carSpaces, filterCars);
 
                 match && filteredProperties.push(property);
             });
@@ -53,6 +58,17 @@ class App extends React.PureComponent {
         })
     };
 
+    clearFilter = (e,form) => {
+        e.preventDefault();
+        this.setState({
+            isFiltering: false,
+            activeProperties: data.properties[0],
+            filterBedrooms: 'any',
+            filterBathrooms: 'any',
+            filterCars: 'any',
+        });
+        form.reset();
+    };
     render() {
         const {properties, activeProperties, filterIsVisible, filteredProperties, isFiltering} = this.state;
         const propertiesList = isFiltering ? filteredProperties : properties;
@@ -69,6 +85,7 @@ class App extends React.PureComponent {
                         filterIsVisible={filterIsVisible}
                         toggleFilter={this.toggleFilter}
                         handleFilterChange={this.handleFilterChange}
+                        clearFilter={this.clearFilter}
                     />
                     <div className={styles.cards}>
                         <div className={styles["cards-list"]}>
